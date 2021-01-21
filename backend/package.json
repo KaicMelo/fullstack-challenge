@@ -6,23 +6,36 @@
   "scripts": {
     "start": "ts-node-dev --transpile-only --ignore-watch node_module src/server.ts",
     "seed": "npx knex seed:run",
-    "migrate": "npx knex migrate:latest"
+    "migrate": "npx knex migrate:latest",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.0",
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^2.20.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.16",
     "mysql": "^2.18.1",
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.9",
     "@types/express": "^4.17.11",
+    "@types/express-session": "^1.17.3",
+    "@types/express-validator": "^3.0.0",
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
+    "@types/supertest": "^2.0.10",
+    "jest": "^26.6.3",
+    "supertest": "^6.1.1",
+    "ts-jest": "^26.4.4",
     "ts-node-dev": "^1.1.1",
     "typescript": "^4.1.3"
   }

@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 
 const routes = Router();
 
-const authMiddleware = (req: Request, res: Response, next) => {
+const authMiddleware = (req: Request, res: Response, next:NextFunction) => {
     const auth = req.headers.authorization;
     if (!auth) return res.status(400).json({ error: "Token invalid" });
 
@@ -22,7 +22,7 @@ const authMiddleware = (req: Request, res: Response, next) => {
     if (!/^Bearer$/i.test(scheme)) return res.status(401).json({ error: "Token malformed" });
 
     try {
-        const verified = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const verified = jwt.verify(token,<string>process.env.ACCESS_TOKEN_SECRET);
 
         next();
     } catch (error) {
@@ -37,7 +37,7 @@ const auctionsController = new AuctionsController();
 routes.get('/authenticate', authenticateController.index);
 
 // AUCTIONS ROUTES
-routes.get('/auctions', authMiddleware, auctionsController.index);
+routes.get('/auctions', auctionsController.index);
 routes.get('/auctions/:id', authMiddleware, auctionsController.show);
 routes.post('/auctions', authMiddleware, auctionsController.store);
 routes.put('/auctions/:id', authMiddleware, auctionsController.update);

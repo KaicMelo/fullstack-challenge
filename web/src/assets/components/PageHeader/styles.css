@@ -1,0 +1,39 @@
+.page-header-schedule{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-background-header); 
+}
+
+.page-header-schedule .top-bar-container-schedule{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 0;
+}
+
+.page-header-schedule .top-bar-container-schedule a {
+    height: 3.2rem;
+    transition: opacity 0.2s;
+}
+
+.page-header-schedule .top-bar-container-schedule .back-schedule{
+    height: 3rem;
+}
+
+.page-header-schedule .top-bar-container-schedule > img{
+    height: 8rem;
+}
+
+.page-header-schedule .header-content-schedule{
+    /* width: 10%; */
+    margin: 0 auto;
+    position: relative;
+    margin: 1.2rem auto;
+}
+
+.page-header-schedule .header-content-schedule strong{
+    font-size: 150%;
+    line-height: 3.2rem;
+}

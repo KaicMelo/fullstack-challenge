@@ -1,0 +1,45 @@
+:root {
+    /* --color-background-purple: #13001d; */
+    --color-blue: #00c2cb; 
+    --color-background-header: #00c2cb;
+  
+    font-size: 60%;
+  }
+
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+  html, body , #root {
+      height: 100vh;
+  }
+
+  body {
+      background: var(--color-background-purple);
+  }
+
+  body,input,button,textarea{
+      font: 500 1.6rem 'Patrick Hand';
+      font-family: 'Patrick Hand', cursive;
+  }
+
+  input{
+      color:  var(--color-background-purple);
+  }
+  .container{
+      width: 100vw;
+      /* max-width: 700px; */
+  }
+
+  /* .button-control{
+    border: 2px solid var(--color-blue);
+    border-radius: 20px;
+  } */
+
+  @media(min-width: 700px){
+    :root {
+        font-size: 62.5%;
+    }
+  }

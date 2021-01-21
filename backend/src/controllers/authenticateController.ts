@@ -9,12 +9,13 @@ import UsersModel from "../models/usersModel";
 const usersModel = new UsersModel();
 
 function generateToken(params = {}) {
-    return jwt.sign(params, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 86400 });
+    return jwt.sign(params, <string>process.env.ACCESS_TOKEN_SECRET, { expiresIn: 86400 });
 }
 
 class authenticateController {
 
     async index(req: Request, res: Response) {
+        if (req.headers.authorization === undefined) return;
         const [hashType, hash] = req.headers.authorization.split(' ');
         const [login, password] = Buffer.from(hash, 'base64').toString().split(':');
 
