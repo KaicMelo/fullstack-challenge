@@ -49,10 +49,10 @@ const List = () => {
                             <td>{item.initial_value}</td>
                             <td>{item.used}</td>
                             <td>
-                                <Link to='/create' className='password button-control'>
-                                Editar
+                                <Link to={`/edit/${item.id}`} className='password button-control'>
+                                    Editar
                                 </Link>
-                                <Link to='/create' className='password button-control'>
+                                <Link to={`/delete/${item.id}`} className='password button-control'>
                                 Excluir
                                 </Link>
                             </td>
