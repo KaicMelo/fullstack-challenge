@@ -12,13 +12,11 @@ const Login = () => {
     const [reqPassword,setReqPassword] = useState<string>("");
 
     function handleLogin(event: ChangeEvent<HTMLInputElement>){
-        const login = event.target.value;
-        setReqLogin(login);
+        setReqLogin(event.target.value);
     }
 
     function handlePassword (event: ChangeEvent<HTMLInputElement>){
-        const password = event.target.value;
-        setReqPassword(password);
+        setReqPassword(event.target.value);
     }
 
     async function handleSubmit(event: FormEvent){
