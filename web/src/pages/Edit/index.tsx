@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent, Component } from 'react';
-import { Link, useParams  } from 'react-router-dom';
-// import './style.css';
+import { Link, useParams, Redirect  } from 'react-router-dom';
+import './style.css';
 import api from '../../services/api';
 import Pageheader from '../../assets/components/PageHeader';
 
@@ -120,8 +120,11 @@ const Edit = () => {
                 </div>
 
                 <div className='buttons-container'>
-                    <Link to='/list' className='password button-control' > 
-                        salvar
+                    <Link to='/list' className='button-control alter-button'> 
+                        Salvar
+                    </Link>
+                    <Link to='/list' className='button-control cancel-button'> 
+                        Cancelar
                     </Link>
                 </div>
             </form>

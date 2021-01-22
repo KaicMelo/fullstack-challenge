@@ -5,6 +5,9 @@ import './style.css';
 import api from '../../services/api';
 import Pageheader from '../../assets/components/PageHeader';
 
+import edit from '../../assets/images/pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.svg';
+import del from '../../assets/images/delete_remove_bin_icon-icons.com_72400.svg';
+
 interface Item {
     id: number,
     name: string,
@@ -35,14 +38,14 @@ const List = () => {
         <div id='page-history' className='container'>
             <Pageheader title='Menu' />
 
-            <table>
-                <thead>
+            <table className='list-table'>
+                <thead className='thead-table'>
                     <td>Nome</td>
                     <td>Valor Inicial</td>
-                    <td>used</td>
+                    <td>Usado ?</td>
                     <td>#</td>
                 </thead>
-                <tbody>
+                <tbody className='tbody-table'>
                     {items.map(item => (
                         <tr key={item.id} onClick={() => { }} >
                             <td>{item.name}</td>
@@ -50,10 +53,10 @@ const List = () => {
                             <td>{item.used}</td>
                             <td>
                                 <Link to={`/edit/${item.id}`} className='password button-control'>
-                                    Editar
+                                    <img src={edit} alt='editar' className='edit-button'/>
                                 </Link>
                                 <Link to={`/delete/${item.id}`} className='password button-control'>
-                                Excluir
+                                    <img src={del} alt='deletar' className='delete-button' />
                                 </Link>
                             </td>
                         </tr>

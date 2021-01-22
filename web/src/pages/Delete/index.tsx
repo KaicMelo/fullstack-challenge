@@ -1,29 +1,28 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent, Component } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import corteLogo from '../../assets/images/fullstackchallenge.png';
-// import './style.css';
+import { Link, useParams, Redirect  } from 'react-router-dom';
+import './style.css';
 import api from '../../services/api';
 import Pageheader from '../../assets/components/PageHeader';
 
-const currencyConfig = {
-    locale: "pt-BR",
-    formats: {
-        number: {
-            BRL: {
-                style: "currency",
-                currency: "BRL",
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-            },
-        },
-    },
-};
+interface Item {
+    id: number,
+    name: string,
+    initial_value: number,
+    responsible: string,
+    used: boolean,
+    start_date: string,
+    end_date: string
+}
 
 async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 }
 
-const Login = () => {
+interface obgParams{
+    id: string
+}
+const Edit = () => { 
+
     const [reqName, setName] = useState<string>("");
     const [reqInicialValue, setInitialValue] = useState<string>("");
     const [reqResponsible, setResponsible] = useState<string>("");
@@ -55,6 +54,28 @@ const Login = () => {
         const end = event.target.value;
         setEndDate(end);
     }
+
+    const params: obgParams = useParams();
+    
+    const config = {
+        headers: {
+            'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjExMjc0NTE2LCJleHAiOjE2MTEzNjA5MTZ9.hQwvjiQUOEMOoAOZWZP5vQdl-z2CfNpUHJEy5iin3h4'
+        }
+    }
+    
+    useEffect(() => {
+        
+        api.get('auctions/'+params.id,config).then(response => {
+            setName(response.data.auctions.name);
+            setInitialValue(response.data.auctions.initial_value);
+            setResponsible(response.data.auctions.responsible);
+            setUsed(response.data.auctions.used);
+            const start = response.data.auctions.start_date.split('T');
+            setStartDate(start[0]);
+            const end = response.data.auctions.end_date.split('T');
+            setEndDate(end[0]);
+        });
+    }, []);
 
     return (
         <div id='page-history' className='container'>
@@ -100,7 +121,7 @@ const Login = () => {
 
                 <div className='buttons-container'>
                     <Link to='/list' className='button-control alter-button'> 
-                        Salvar
+                        Deletar
                     </Link>
                     <Link to='/list' className='button-control cancel-button'> 
                         Cancelar
@@ -112,4 +133,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Edit;

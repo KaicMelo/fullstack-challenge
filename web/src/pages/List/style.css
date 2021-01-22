@@ -24,6 +24,21 @@ text-align: center;
 /* background-color: blue; */
 } 
 
+.list-table{
+    width: 100%;
+}
+.thead-table{
+    text-align: center;
+}
+.tbody-table{
+    text-align: center;
+}
+.edit-button{
+    width: 20px;
+}
+.delete-button{
+    width: 35px;
+}
 @media(min-width: 700px){
     #top-bar-container{
         /* display: flex; */

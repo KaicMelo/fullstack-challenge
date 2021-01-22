@@ -1,20 +1,15 @@
-import React,  { useEffect, useState,ChangeEvent,FormEvent, Component } from 'react';
-import { Link, useHistory    } from 'react-router-dom'; 
+import React,  {useState,ChangeEvent,FormEvent } from 'react';
+import { Redirect } from 'react-router-dom'; 
+import swal from 'sweetalert';
+
 import corteLogo from '../../assets/images/fullstackchallenge.png'; 
 import './style.css';
 import api from '../../services/api';
-
-interface Logins{
-    user:string,
-    password: string
-}
 
 const Login = () => {
     
     const [reqLogin,setReqLogin] = useState<string>("");
     const [reqPassword,setReqPassword] = useState<string>("");
-    const [token,setToken] = useState<string>("");
-    const [user,setUser] = useState<string>("");
 
     function handleLogin(event: ChangeEvent<HTMLInputElement>){
         const login = event.target.value;
@@ -28,7 +23,7 @@ const Login = () => {
 
     async function handleSubmit(event: FormEvent){
         event.preventDefault();
-        
+       
         var authorizationBasic = window.btoa(reqLogin + ':' + reqPassword);
         var config = {
             "headers": {
@@ -37,13 +32,14 @@ const Login = () => {
         };
  
         api.get('authenticate',config).then(response => {
-            // setToken(response.data.token); 
-            console.log(response)
             localStorage.setItem('token', response.data.token);
-
-            return window.location.href = '/home';
+            console.log('ok');
+            return (
+                <Redirect to={{pathname:'/list', state:{next: true}}} />
+            );
         }).catch(response => {
             
+            swal("Usuario ou Senha incorreta");
         });             
     }
 
@@ -51,7 +47,7 @@ const Login = () => {
         <div id='page-landing'>
             <div id='page-landing-content' className='container'>
                 <div className='logo-container'>
-                    <img src={corteLogo} alt='Proffy' />
+                    <img src={corteLogo} alt='Fullstack Challenge' />
                 </div>
 
                 <form onSubmit={handleSubmit} id='form-control'>
@@ -69,12 +65,8 @@ const Login = () => {
                     </div>
 
                     <div className='buttons-container'>
-                        {/* <Link to='/home' className='login button-control'> 
-                            Entrar
-                        </Link> */}
-                        <Link to='/list' className='password button-control-login'>
-                            Login
-                        </Link> 
+
+                        <button type='submit' className='button-control-login' >Login</button>
                     </div>
                 </form>
             </div>

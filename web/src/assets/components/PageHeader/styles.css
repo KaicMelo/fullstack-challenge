@@ -23,7 +23,7 @@
 }
 
 .page-header-schedule .top-bar-container-schedule > img{
-    height: 8rem;
+    height: 14rem;
 }
 
 .page-header-schedule .header-content-schedule{
@@ -36,4 +36,16 @@
 .page-header-schedule .header-content-schedule strong{
     font-size: 150%;
     line-height: 3.2rem;
+}
+
+.header-content-schedule a {
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+    text-shadow: 100px black;
+}
+.top-bar-container-schedule a{
+    color: black;
+    text-decoration: none;
+    margin-right: 15px;
 }

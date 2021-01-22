@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import backIcon from '../../images/return.svg';
-import backIcon from '../../images/fullstackchallenge.png';
+import backIcons from '../../images/return.svg';
+import backIcon from '../../images/arrow-left.svg';
 import corteLogo from '../../images/fullstackchallenge.png';
 
 import './styles.css';
@@ -15,14 +15,17 @@ const Pageheader: React.FC<PageHeaderProps> = (props) => {
     return (
         <header className='page-header-schedule'>
             <div className='top-bar-container-schedule'>
-                <div></div>
                 <img src={corteLogo} alt='cortar' />
+                <div></div>
+                <Link to='/' className='button-control'>
+                    Sair
+                </Link>
             </div>
             <div className='header-content-schedule'>
-                <Link to='/list' className='password button-control'>
+                <Link to='/list' className='button-control'>
                     Listar
                 </Link>
-                <Link to='/create' className='password button-control'>
+                <Link to='/create' className='button-control'>
                     Cadastrar
                 </Link>
             </div>
