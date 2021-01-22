@@ -30,17 +30,18 @@ const Login = () => {
         };
  
         api.get('authenticate',config).then(response => {
-            localStorage.setItem('token', response.data.token);
-            console.log('ok');
-            return (
-                <Redirect to={{pathname:'/list', state:{next: true}}} />
-            );
+            localStorage.setItem('token', response.data.token);    
+
         }).catch(response => {
             
             swal("Usuario ou Senha incorreta");
         });             
     }
-
+    if(localStorage.getItem('token')){
+        return(
+            <Redirect to={{pathname:'/list', state:{next: true}}} />
+        );
+    }
     return (
         <div id='page-landing'>
             <div id='page-landing-content' className='container'>

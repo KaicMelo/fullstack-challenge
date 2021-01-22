@@ -1,5 +1,5 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent, Component } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import corteLogo from '../../assets/images/fullstackchallenge.png';
 // import './style.css';
 import api from '../../services/api';

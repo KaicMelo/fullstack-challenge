@@ -44,8 +44,15 @@
     color: black;
     text-shadow: 100px black;
 }
-.top-bar-container-schedule a{
+/* .top-bar-container-schedule a{
     color: black;
     text-decoration: none;
     margin-right: 15px;
+} */
+.exit-button{
+    margin-right: 15px;
+    color: black;
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
 }
