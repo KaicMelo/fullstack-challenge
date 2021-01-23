@@ -37,8 +37,8 @@ const auctionsController = new AuctionsController();
 routes.get('/authenticate', authenticateController.index);
 
 // AUCTIONS ROUTES
-routes.get('/auctions', auctionsController.index);
-routes.get('/auctions/:id', auctionsController.show);
+routes.get('/auctions', authMiddleware, auctionsController.index);
+routes.get('/auctions/:id', authMiddleware, auctionsController.show);
 routes.post('/auctions', authMiddleware, auctionsController.store);
 routes.put('/auctions/:id', authMiddleware, auctionsController.update);
 routes.delete('/auctions/:id', authMiddleware, auctionsController.destroy);

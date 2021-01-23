@@ -59,7 +59,7 @@ const Edit = () => {
     
     const config = {
         headers: {
-            'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjExMjc0NTE2LCJleHAiOjE2MTEzNjA5MTZ9.hQwvjiQUOEMOoAOZWZP5vQdl-z2CfNpUHJEy5iin3h4'
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
     }
     

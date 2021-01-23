@@ -24,7 +24,7 @@ const List = () => {
 
     const config = {
         headers: {
-            'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjExMjQ4MDAwLCJleHAiOjE2MTEzMzQ0MDB9.qVQbdK2z9Ehw-EDpyBQtXPPE4By0QBr67K3ezNAmH8U'
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
     }
 

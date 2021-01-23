@@ -10,6 +10,7 @@ const Login = () => {
     
     const [reqLogin,setReqLogin] = useState<string>("");
     const [reqPassword,setReqPassword] = useState<string>("");
+    const [token,setToken] = useState<string>("");
 
     function handleLogin(event: ChangeEvent<HTMLInputElement>){
         setReqLogin(event.target.value);
@@ -31,13 +32,13 @@ const Login = () => {
  
         api.get('authenticate',config).then(response => {
             localStorage.setItem('token', response.data.token);    
-
+            setToken( response.data.token);
         }).catch(response => {
             
             swal("Usuario ou Senha incorreta");
         });             
     }
-    if(localStorage.getItem('token')){
+    if(token){
         return(
             <Redirect to={{pathname:'/list', state:{next: true}}} />
         );

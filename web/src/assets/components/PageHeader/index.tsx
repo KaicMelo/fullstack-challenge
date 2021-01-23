@@ -25,13 +25,9 @@ const Pageheader: React.FC<PageHeaderProps> = (props) => {
         <header className='page-header-schedule'>
             <div className='top-bar-container-schedule'>
                 <img src={corteLogo} alt='cortar' />
-                {/* <div></div> */}
                 <form  onSubmit={handleExit}>
                     <button type='submit' className='exit-button'>Sair</button>
                 </form>
-                {/* <Link to='/' className='button-control' onSubmit={handleExit}>
-                    Sair
-                </Link> */}
             </div>
             <div className='header-content-schedule'>
                 <Link to='/list' className='button-control'>
