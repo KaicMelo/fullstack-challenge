@@ -23,7 +23,7 @@ http://localhost:3000
 
 ## USUARIOS
 
-Login: filipe.souza 	password: filipe.souza
-Login: gustavo.maranho 	password: gustavo.maranho
-Login: flavio.scorrea 	password: flavio.scorrea
-Login: kaic.melo 	password: kaic.melo
+- Login: filipe.souza 	password: filipe.souza
+- Login: gustavo.maranho 	password: gustavo.maranho
+- Login: flavio.scorrea 	password: flavio.scorrea
+- Login: kaic.melo 	password: kaic.melo
