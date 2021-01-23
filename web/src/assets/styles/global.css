@@ -27,8 +27,12 @@
       width: 100vw;
   }
 
-  @media(min-width: 700px){
+  @media(min-width: 900px){
     :root {
         font-size: 62.5%;
+    }
+    #form-control{
+      width: 500px;
+      margin: 0 auto;
     }
   }

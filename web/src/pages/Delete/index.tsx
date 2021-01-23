@@ -72,13 +72,29 @@ const Delete = () => {
 
     async function handleSubmit(event: FormEvent) {
         event.preventDefault();
+        swal({
+            title: "Tem Certeza ?",
+            text: "Seu leilão será deletado!",
+            icon: "warning", 
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                api.delete('auctions/'+ params.id, config).then(response => { 
+                    swal("Leilão deletado com Sucesso");
+                    setDeleted('true');   
+                }).catch(response => {
+                    swal("Erro ao deletar leilão");
+                });
+                
+                swal("Leilão deletado com Sucesso", {
+                icon: "success",
+              });
+            } else {
+              swal("Ufa, Seu leilão continua na lista");
+            }
+          });
 
-        api.delete('auctions/'+ params.id, config).then(response => { 
-            swal("Leilão deletado com Sucesso");
-            setDeleted('true');   
-        }).catch(response => {
-            swal("Erro ao deletar leilão");
-        }); 
     }
 
     if(reqDeleted == "true"){  

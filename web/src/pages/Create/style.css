@@ -30,6 +30,10 @@ text-align: center;
     border-radius: 5%;
     color: var(--color-input-content); 
 }
+#input-imitial-value::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(204, 204, 204);
+    opacity: 1; /* Firefox */
+  }
 @media(min-width: 700px){
     #top-bar-container{
         /* display: flex; */

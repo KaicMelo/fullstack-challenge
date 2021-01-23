@@ -33,7 +33,12 @@ const Edit = () => {
         setName(event.target.value);
     }
     function handInitialValue(event: ChangeEvent<HTMLInputElement>) {
-        setInitialValue(event.target.value);
+        const initial = event.target.value;
+        const final = initial
+        .replace(/\D/g,"") 
+        .replace(/(\d)(\d{2})$/,"$1,$2")
+        .replace(/(?=(\d{3})+(\D))\B/g,"."); 
+        setInitialValue(final);
     }
     function handResponsible(event: ChangeEvent<HTMLInputElement>) {
         setResponsible(event.target.value);
@@ -111,7 +116,7 @@ const Edit = () => {
                     <label htmlFor='input-imitial-value'>
                         Valor Inicial:
                         </label>
-                    <input type="number" id='input-imitial-value' value={reqInicialValue} onChange={handInitialValue} />
+                    <input type="text" id='input-imitial-value' value={reqInicialValue} onChange={handInitialValue} />
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-responsible'>

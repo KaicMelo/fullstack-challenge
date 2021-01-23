@@ -49,7 +49,7 @@ const List = () => {
                     {items.map(item => (
                         <tr key={item.id} onClick={() => { }} >
                             <td>{item.name}</td>
-                            <td>{item.initial_value}</td>
+                            <td>R$: {item.initial_value}</td>
                             <td>{item.used == 0 ? 'Não' : 'Sim'}</td>
                             <td>
                                 <Link to={`/edit/${item.id}`} className='password button-control'>

@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, Redirect} from 'react-router-dom'; 
 import swal from 'sweetalert';
+import InputMask from 'react-input-mask';
 
 import './style.css';
 import api from '../../services/api';
@@ -19,7 +20,12 @@ const Create = () => {
         setName(event.target.value);
     }
     function handInitialValue(event: ChangeEvent<HTMLInputElement>) {
-        setInitialValue(event.target.value);
+        const initial = event.target.value;
+        const final = initial
+        .replace(/\D/g,"") 
+        .replace(/(\d)(\d{2})$/,"$1,$2")
+        .replace(/(?=(\d{3})+(\D))\B/g,"."); 
+        setInitialValue(final);
     }
     function handResponsible(event: ChangeEvent<HTMLInputElement>) {
         setResponsible(event.target.value);
@@ -76,26 +82,27 @@ const Create = () => {
                     <label htmlFor='input-name'>
                         Nome do Leilão:
                         </label>
-                    <input type="text" id='input-name' value={reqName} onChange={handName} />
+                    <input type="text" id='input-name' value={reqName} onChange={handName} required />
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-imitial-value'>
                         Valor Inicial:
-                        </label>
-                    <input type="number" id='input-imitial-value' value={reqInicialValue} onChange={handInitialValue} />
+                        </label> 
+                    <input type="text" id='input-imitial-value' value={reqInicialValue} onChange={handInitialValue} required placeholder='999.999,30'/>
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-responsible'>
                         Responsável:
                         </label>
-                    <input type="text" id='input-responsible' value={reqResponsible} onChange={handResponsible} />
+                    <input type="text" id='input-responsible' value={reqResponsible} onChange={handResponsible} required />
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-used'>
                         É usado ?
                     </label>
                     <br />
-                    <select className='input-used'  value={reqUsed} onChange={handUsed}>
+                    <select className='input-used'  value={reqUsed} onChange={handUsed} required>
+                        <option selected >Selecione</option> 
                         <option value="0">Não</option> 
                         <option value="1">Sim</option> 
                     </select>
@@ -104,13 +111,13 @@ const Create = () => {
                     <label htmlFor='input-start-date'>
                         Data de Abertura
                         </label>
-                    <input type="date" id='input-start-date' value={reqStartDate} onChange={handStartDate} />
+                    <input type="date" id='input-start-date' value={reqStartDate} onChange={handStartDate} required/>
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-end-date'>
                         Data de Finalização
                         </label>
-                    <input type="date" id='input-end-date' value={reqEndDate} onChange={handEndDate} />
+                    <input type="date" id='input-end-date' value={reqEndDate} onChange={handEndDate} required/>
                 </div>
 
                 <div className='buttons-container'>

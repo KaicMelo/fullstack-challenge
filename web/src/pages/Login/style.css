@@ -28,6 +28,7 @@
    border-radius: 0.8rem;
    color: #adadad;
    border: 1px solid var(--color-border-input) !important; 
+   outline: none;
 }
 
 .buttons-container {
@@ -68,8 +69,12 @@
     text-decoration: none;
     outline: 0;
   }
-@media (min-width: 1100px){
+@media (min-width: 900px){
     #page-landing-content{
         width: 25%;
     }
+    
+#form-control .input-form input{
+    width: 25rem; 
+ }
 }
