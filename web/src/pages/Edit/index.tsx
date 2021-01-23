@@ -1,5 +1,7 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent, Component } from 'react';
-import { Link, useParams, Redirect  } from 'react-router-dom';
+import { Link, useParams, Redirect } from 'react-router-dom';
+import swal from 'sweetalert';
+
 import './style.css';
 import api from '../../services/api';
 import Pageheader from '../../assets/components/PageHeader';
@@ -14,15 +16,12 @@ interface Item {
     end_date: string
 }
 
-async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-}
-
-interface obgParams{
+interface obgParams {
     id: string
 }
-const Edit = () => { 
+const Edit = () => {
 
+    const [altered,setAltered] = useState<string>("");
     const [reqName, setName] = useState<string>("");
     const [reqInicialValue, setInitialValue] = useState<string>("");
     const [reqResponsible, setResponsible] = useState<string>("");
@@ -31,41 +30,35 @@ const Edit = () => {
     const [reqEndDate, setEndDate] = useState<string>("");
 
     function handName(event: ChangeEvent<HTMLInputElement>) {
-        const name = event.target.value;
-        setName(name);
+        setName(event.target.value);
     }
     function handInitialValue(event: ChangeEvent<HTMLInputElement>) {
-        const initial = event.target.value;
-        setInitialValue(initial);
+        setInitialValue(event.target.value);
     }
     function handResponsible(event: ChangeEvent<HTMLInputElement>) {
-        const responsible = event.target.value;
-        setResponsible(responsible);
+        setResponsible(event.target.value);
     }
-    function handUsed(event: ChangeEvent<HTMLInputElement>) {
-        const used = event.target.value;
-        setUsed(used);
+    function handUsed(event: ChangeEvent<HTMLSelectElement>) {
+        setUsed(event.target.value);
     }
     function handStartDate(event: ChangeEvent<HTMLInputElement>) {
-        const start = event.target.value;
-        setStartDate(start);
+        setStartDate(event.target.value);
     }
     function handEndDate(event: ChangeEvent<HTMLInputElement>) {
-        const end = event.target.value;
-        setEndDate(end);
+        setEndDate(event.target.value);
     }
 
-    const params:obgParams = useParams();
-    
+    const params: obgParams = useParams();
+
     const config = {
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('token')
         }
     }
-    
+
     useEffect(() => {
-        
-        api.get('auctions/'+params.id,config).then(response => {
+
+        api.get('auctions/' + params.id, config).then(response => {
             setName(response.data.auctions.name);
             setInitialValue(response.data.auctions.initial_value);
             setResponsible(response.data.auctions.responsible);
@@ -77,6 +70,32 @@ const Edit = () => {
         });
     }, []);
 
+    async function handleSubmit(event: FormEvent) {
+        event.preventDefault();
+        
+        const data = {
+            "name":reqName,
+            "initial_value": reqInicialValue,
+            "used": reqUsed,
+            "responsible":reqResponsible,
+            "start_date":reqStartDate,
+            "end_date":reqEndDate,
+        }
+    
+        api.put('auctions/' + params.id, data , config).then(response => { 
+            swal("Leilão alterado com Sucesso");
+            setAltered('true');
+        }).catch(response => {
+            swal("Erro ao alterar leilão","Preecha os campos corretamente");
+        });  
+
+    }
+
+    if(altered == "true"){
+        return(
+            <Redirect to={{pathname:'/list', state:{next: true}}} />
+        );
+    }
     return (
         <div id='page-history' className='container'>
             <Pageheader title='Menu' />
@@ -104,7 +123,12 @@ const Edit = () => {
                     <label htmlFor='input-used'>
                         É usado ?
                         </label>
-                    <input type="text" id='input-used' value={reqUsed} onChange={handUsed} />
+                    <br />
+                    <select className='input-used' value={reqUsed} onChange={handUsed}>
+                        <option value="0">Não</option>
+                        <option value="1">Sim</option>
+                    </select>
+                    {/* <input type="text" id='input-used' value={reqUsed} onChange={handUsed} /> */}
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-start-date'>
@@ -120,10 +144,10 @@ const Edit = () => {
                 </div>
 
                 <div className='buttons-container'>
-                    <Link to='/list' className='button-control alter-button'> 
+                <button type='submit' className='alter-button'>
                         Salvar
-                    </Link>
-                    <Link to='/list' className='button-control cancel-button'> 
+                    </button>
+                    <Link to='/list' className='button-control cancel-button'>
                         Cancelar
                     </Link>
                 </div>

@@ -23,7 +23,13 @@ line-height: 90px;
 text-align: center;
 /* background-color: blue; */
 } 
-
+.input-used{
+    width: 100%;
+    border: 1px solid #e2e0e0;
+    height: 4rem;
+    border-radius: 5%;
+    color: var(--color-input-content); 
+}
 @media(min-width: 700px){
     #top-bar-container{
         /* display: flex; */

@@ -1,29 +1,13 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
-import corteLogo from '../../assets/images/fullstackchallenge.png';
-// import './style.css';
+import { Link, Redirect} from 'react-router-dom'; 
+import swal from 'sweetalert';
+
+import './style.css';
 import api from '../../services/api';
 import Pageheader from '../../assets/components/PageHeader';
 
-const currencyConfig = {
-    locale: "pt-BR",
-    formats: {
-        number: {
-            BRL: {
-                style: "currency",
-                currency: "BRL",
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-            },
-        },
-    },
-};
-
-async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-}
-
-const Login = () => {
+const Create = () => {
+    const [created,setCreated] = useState<string>("");
     const [reqName, setName] = useState<string>("");
     const [reqInicialValue, setInitialValue] = useState<string>("");
     const [reqResponsible, setResponsible] = useState<string>("");
@@ -32,30 +16,57 @@ const Login = () => {
     const [reqEndDate, setEndDate] = useState<string>("");
 
     function handName(event: ChangeEvent<HTMLInputElement>) {
-        const name = event.target.value;
-        setName(name);
+        setName(event.target.value);
     }
     function handInitialValue(event: ChangeEvent<HTMLInputElement>) {
-        const initial = event.target.value;
-        setInitialValue(initial);
+        setInitialValue(event.target.value);
     }
     function handResponsible(event: ChangeEvent<HTMLInputElement>) {
-        const responsible = event.target.value;
-        setResponsible(responsible);
+        setResponsible(event.target.value);
     }
-    function handUsed(event: ChangeEvent<HTMLInputElement>) {
-        const used = event.target.value;
-        setUsed(used);
+    function handUsed(event: ChangeEvent<HTMLSelectElement>) {
+        setUsed(event.target.value);
     }
     function handStartDate(event: ChangeEvent<HTMLInputElement>) {
-        const start = event.target.value;
-        setStartDate(start);
+        setStartDate(event.target.value);
     }
     function handEndDate(event: ChangeEvent<HTMLInputElement>) {
-        const end = event.target.value;
-        setEndDate(end);
+        setEndDate(event.target.value);
     }
 
+    async function handleSubmit(event: FormEvent) {
+        event.preventDefault();
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        }
+
+        const data = {
+            "name":reqName,
+            "initial_value": reqInicialValue,
+            "used": reqUsed,
+            "responsible":reqResponsible,
+            "start_date":reqStartDate,
+            "end_date":reqEndDate,
+        }
+    
+        api.post('auctions', data , config).then(response => { 
+            swal("Leilão cadastrado com Sucesso");
+            setCreated('true');
+            
+        }).catch(response => {
+            
+            swal("Erro ao cadastrar leilão","Preecha os campos corretamente");
+        });   
+        
+    }
+
+    if(created == "true"){  
+        return(
+            <Redirect to={{pathname:'/list', state:{next: true}}} />
+        );
+    }
     return (
         <div id='page-history' className='container'>
             <Pageheader title='Menu' />
@@ -82,8 +93,12 @@ const Login = () => {
                 <div className='input-form'>
                     <label htmlFor='input-used'>
                         É usado ?
-                        </label>
-                    <input type="text" id='input-used' value={reqUsed} onChange={handUsed} />
+                    </label>
+                    <br />
+                    <select className='input-used'  value={reqUsed} onChange={handUsed}>
+                        <option value="0">Não</option> 
+                        <option value="1">Sim</option> 
+                    </select>
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-start-date'>
@@ -99,10 +114,10 @@ const Login = () => {
                 </div>
 
                 <div className='buttons-container'>
-                    <Link to='/list' className='button-control alter-button'> 
+                    <button type='submit' className='alter-button'>
                         Salvar
-                    </Link>
-                    <Link to='/list' className='button-control cancel-button'> 
+                    </button>
+                    <Link to='/list' className='button-control cancel-button'>
                         Cancelar
                     </Link>
                 </div>
@@ -112,4 +127,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Create;

@@ -13,7 +13,7 @@ interface Item {
     name: string,
     initial_value: number,
     responsible: string,
-    used: boolean,
+    used: number,
     start_date: string,
     end_date: string
 }
@@ -50,7 +50,7 @@ const List = () => {
                         <tr key={item.id} onClick={() => { }} >
                             <td>{item.name}</td>
                             <td>{item.initial_value}</td>
-                            <td>{item.used}</td>
+                            <td>{item.used == 0 ? 'Não' : 'Sim'}</td>
                             <td>
                                 <Link to={`/edit/${item.id}`} className='password button-control'>
                                     <img src={edit} alt='editar' className='edit-button'/>
