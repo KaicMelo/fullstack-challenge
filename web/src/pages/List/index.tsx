@@ -1,6 +1,6 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent, Component } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import corteLogo from '../../assets/images/fullstackchallenge.png';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import './style.css';
 import api from '../../services/api';
 import Pageheader from '../../assets/components/PageHeader';
@@ -20,6 +20,8 @@ interface Item {
 
 
 const List = () => {
+    const date = new Date();
+    
     const [items, setItems] = useState<Item[]>([]);
 
     const config = {
@@ -43,17 +45,21 @@ const List = () => {
                     <td>Nome</td>
                     <td>Valor Inicial</td>
                     <td>Usado ?</td>
+                    <td>Responsável</td>
+                    <td>Leilão ativo ?</td>
                     <td>#</td>
                 </thead>
                 <tbody className='tbody-table'>
                     {items.map(item => (
-                        <tr key={item.id} onClick={() => { }} >
+                        <tr key={item.id} onClick={() => { }} className='table-control'>
                             <td>{item.name}</td>
                             <td>R$: {item.initial_value}</td>
                             <td>{item.used == 0 ? 'Não' : 'Sim'}</td>
+                            <td>{item.responsible}</td>
+                            <td>{new Date(item.end_date) >= new Date()?"sim":"Não"}</td>
                             <td>
                                 <Link to={`/edit/${item.id}`} className='password button-control'>
-                                    <img src={edit} alt='editar' className='edit-button'/>
+                                    <img src={edit} alt='editar' className='edit-button' />
                                 </Link>
                                 <Link to={`/delete/${item.id}`} className='password button-control'>
                                     <img src={del} alt='deletar' className='delete-button' />

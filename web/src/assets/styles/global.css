@@ -1,10 +1,9 @@
 :root {
-    /* --color-background-purple: #13001d; */
     --color-blue: #00c2cb; 
     --color-background-header: #00c2cb;
     --color-border-input:#e4e4e4;
     --color-red:#df3d3d;
-    --color-input-content:#adadad;
+    --color-input-content:#6b6b6b;
     font-size: 60%;
   }
 

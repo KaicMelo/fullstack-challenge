@@ -1,20 +1,10 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent, Component } from 'react';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 
 import './style.css';
 import api from '../../services/api';
 import Pageheader from '../../assets/components/PageHeader';
-
-interface Item {
-    id: number,
-    name: string,
-    initial_value: number,
-    responsible: string,
-    used: boolean,
-    start_date: string,
-    end_date: string
-}
 
 interface obgParams {
     id: string
@@ -33,7 +23,11 @@ const Delete = () => {
         setName(event.target.value);
     }
     function handInitialValue(event: ChangeEvent<HTMLInputElement>) {
-        setInitialValue(event.target.value);
+        const final = event.target.value
+        .replace(/\D/g,"") 
+        .replace(/(\d)(\d{2})$/,"$1,$2")
+        .replace(/(?=(\d{3})+(\D))\B/g,"."); 
+        setInitialValue(final);
     }
     function handResponsible(event: ChangeEvent<HTMLInputElement>) {
         setResponsible(event.target.value);
@@ -94,7 +88,6 @@ const Delete = () => {
               swal("Ufa, Seu leilão continua na lista");
             }
           });
-
     }
 
     if(reqDeleted == "true"){  
@@ -103,7 +96,7 @@ const Delete = () => {
         );
     }
     return (
-        <div id='page-history' className='container'>
+        <div id='page-delete' className='container'>
             <Pageheader title='Menu' />
 
             <form onSubmit={handleSubmit} id='form-control'>
@@ -114,10 +107,10 @@ const Delete = () => {
                     <input type="text" id='input-name' value={reqName} onChange={handName} disabled />
                 </div>
                 <div className='input-form'>
-                    <label htmlFor='input-imitial-value'>
+                    <label htmlFor='input-initial-value'>
                         Valor Inicial:
                         </label>
-                    <input type="number" id='input-imitial-value' value={reqInicialValue} onChange={handInitialValue} disabled />
+                    <input type="text" id='input-initial-value' value={reqInicialValue} onChange={handInitialValue} disabled />
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-responsible'>

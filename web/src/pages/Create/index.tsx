@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, Redirect} from 'react-router-dom'; 
 import swal from 'sweetalert';
-import InputMask from 'react-input-mask';
 
 import './style.css';
 import api from '../../services/api';
@@ -20,8 +19,7 @@ const Create = () => {
         setName(event.target.value);
     }
     function handInitialValue(event: ChangeEvent<HTMLInputElement>) {
-        const initial = event.target.value;
-        const final = initial
+        const final = event.target.value
         .replace(/\D/g,"") 
         .replace(/(\d)(\d{2})$/,"$1,$2")
         .replace(/(?=(\d{3})+(\D))\B/g,"."); 
@@ -74,7 +72,7 @@ const Create = () => {
         );
     }
     return (
-        <div id='page-history' className='container'>
+        <div id='page-create' className='container'>
             <Pageheader title='Menu' />
 
             <form onSubmit={handleSubmit} id='form-control'>
@@ -85,10 +83,10 @@ const Create = () => {
                     <input type="text" id='input-name' value={reqName} onChange={handName} required />
                 </div>
                 <div className='input-form'>
-                    <label htmlFor='input-imitial-value'>
+                    <label htmlFor='input-initial-value'>
                         Valor Inicial:
                         </label> 
-                    <input type="text" id='input-imitial-value' value={reqInicialValue} onChange={handInitialValue} required placeholder='999.999,30'/>
+                    <input type="text" id='input-initial-value' value={reqInicialValue} onChange={handInitialValue} required placeholder='999.999,30'/>
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-responsible'>

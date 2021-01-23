@@ -1,8 +1,6 @@
 import React,{ FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-import backIcons from '../../images/return.svg';
-import backIcon from '../../images/arrow-left.svg';
 import corteLogo from '../../images/fullstackchallenge.png';
 
 import './styles.css';

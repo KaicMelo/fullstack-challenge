@@ -1,20 +1,10 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent, Component } from 'react';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 
 import './style.css';
 import api from '../../services/api';
 import Pageheader from '../../assets/components/PageHeader';
-
-interface Item {
-    id: number,
-    name: string,
-    initial_value: number,
-    responsible: string,
-    used: boolean,
-    start_date: string,
-    end_date: string
-}
 
 interface obgParams {
     id: string
@@ -33,8 +23,7 @@ const Edit = () => {
         setName(event.target.value);
     }
     function handInitialValue(event: ChangeEvent<HTMLInputElement>) {
-        const initial = event.target.value;
-        const final = initial
+        const final = event.target.value
         .replace(/\D/g,"") 
         .replace(/(\d)(\d{2})$/,"$1,$2")
         .replace(/(?=(\d{3})+(\D))\B/g,"."); 
@@ -92,8 +81,7 @@ const Edit = () => {
             setAltered('true');
         }).catch(response => {
             swal("Erro ao alterar leilão","Preecha os campos corretamente");
-        });  
-
+        });
     }
 
     if(altered == "true"){
@@ -102,7 +90,7 @@ const Edit = () => {
         );
     }
     return (
-        <div id='page-history' className='container'>
+        <div id='page-edit' className='container'>
             <Pageheader title='Menu' />
 
             <form onSubmit={handleSubmit} id='form-control'>
@@ -113,10 +101,10 @@ const Edit = () => {
                     <input type="text" id='input-name' value={reqName} onChange={handName} />
                 </div>
                 <div className='input-form'>
-                    <label htmlFor='input-imitial-value'>
+                    <label htmlFor='input-initial-value'>
                         Valor Inicial:
                         </label>
-                    <input type="text" id='input-imitial-value' value={reqInicialValue} onChange={handInitialValue} />
+                    <input type="text" id='input-initial-value' value={reqInicialValue} onChange={handInitialValue} />
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-responsible'>
@@ -133,7 +121,6 @@ const Edit = () => {
                         <option value="0">Não</option>
                         <option value="1">Sim</option>
                     </select>
-                    {/* <input type="text" id='input-used' value={reqUsed} onChange={handUsed} /> */}
                 </div>
                 <div className='input-form'>
                     <label htmlFor='input-start-date'>
