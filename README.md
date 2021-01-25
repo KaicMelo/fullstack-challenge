@@ -3,19 +3,24 @@
 ## BACKEND
 
 Conexão MySQL:
-- Criar um banco de dados
-- Adionar as configurações do banco no ".env" na pasta raiz do backend
+- Crie um banco de dados
+- Adione as configurações do banco no ".env" na pasta raiz do backend
 
-Executar os seguintes comandos na raiz ##backend:
+DB_DATABASE=seu_banco_de_dados
+DB_USERNAME=usuario_do_bando
+DB_PASSWORD=senha_do_bando
+
+Executar os seguintes comandos na raiz ## BACKEND:
 - npm i
 - npm run migrate
 - npm run seed
 - npm run build
 - npm run prod
 
+
 ## FRONTEND
 
-Executar os seguintes comandos na raiz ##web:
+Executar os seguintes comandos na raiz ## WEB:
 - npm i
 - npm start
 
