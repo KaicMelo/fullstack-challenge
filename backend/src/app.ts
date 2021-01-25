@@ -2,6 +2,7 @@ import express from 'express'
 import routes from './routes'
 import cors from 'cors';
 import expressValidator from 'express-validator';
+// const expressValidator = require('express-validator')
 import expressSession from 'express-session';
 
 const app = express();
