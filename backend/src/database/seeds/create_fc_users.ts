@@ -18,6 +18,10 @@ export async function seed(knex: Knex) {
         {
             user: 'kaic.melo',
             password: crypto.createHash("md5").update('kaic.melo').digest('hex'),
+        },
+        {
+            user: '@user',
+            password: crypto.createHash("md5").update('@user').digest('hex'),
         }
     ]);
 }
