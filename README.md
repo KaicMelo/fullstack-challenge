@@ -18,6 +18,11 @@ Executar os seguintes comandos na raiz ## BACKEND:
 - npm run prod
 
 
+## TDD
+- com o backend rodando execute o seguinte comando:
+- npm run test
+
+
 ## FRONTEND
 
 Executar os seguintes comandos na raiz ## WEB:
