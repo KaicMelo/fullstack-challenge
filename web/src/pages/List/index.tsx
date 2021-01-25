@@ -45,7 +45,7 @@ const List = () => {
                     <td>Nome</td>
                     <td>Valor Inicial</td>
                     <td>Usado ?</td>
-                    <td>Responsável</td>
+                    <td>Resp.</td>
                     <td>Leilão ativo ?</td>
                     <td>#</td>
                 </thead>

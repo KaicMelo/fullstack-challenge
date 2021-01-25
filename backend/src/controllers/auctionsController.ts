@@ -65,7 +65,7 @@ class auctionsController {
             return res.status(400).json({ message: "Auction not found" });
         }
 
-        return res.status(201).json({ message: 'Create successful' });
+        return res.status(201).json({ message: 'Create successful',id:auctions[0] });
     }
     async update(req: Request, res: Response) {
         const { id } = req.params;

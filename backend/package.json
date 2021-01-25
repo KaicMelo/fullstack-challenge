@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --transpile-only --ignore-watch node_module src/server.ts",
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_module src/server.ts",
     "prod": "node ./dist/server.js",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
     "seed": "npx knex seed:run",
@@ -17,6 +17,7 @@
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.0",
     "axios": "^0.21.1",
+    "btoa": "^1.2.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -25,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.16",
     "mysql": "^2.18.1",
+    "nock": "^13.0.6",
     "path": "^0.12.7",
     "sucrase": "^3.17.0"
   },
