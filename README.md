@@ -10,7 +10,8 @@ Executar os seguintes comandos na raiz ##backend:
 - npm i
 - npm run migrate
 - npm run seed
-- npm start
+- npm build
+- npm prod
 
 ## FRONTEND
 
